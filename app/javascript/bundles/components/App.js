@@ -1,8 +1,13 @@
-import PropTypes from 'prop-types'
 import React, { useState } from 'react'
+import TestStateful from './TestStateful'
+import TestStateless from './TestStateless'
 
 const App = props => {
   const [name, setName] = useState(props.name)
+
+  const handleInputChange = e => {
+    setName(e.target.value)
+  }
 
   return (
     <div>
@@ -15,16 +20,13 @@ const App = props => {
             id='name'
             type='text'
             value={name}
-            onChange={e => setName(e.target.value)}
+            onChange={e => handleInputChange(e)}
           />
         </label>
       </form>
+      <TestStateless />
+      <TestStateful />
     </div>
   )
 }
-
-App.propTypes = {
-  name: PropTypes.string.isRequired, // this is passed from the Rails view
-}
-
 export default App
